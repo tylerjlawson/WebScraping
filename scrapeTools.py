@@ -1,6 +1,6 @@
 from six.moves.urllib.request import urlopen
 import pandas as pd
-from bs4 import BeautifulSoup, SoupStrainer
+from bs4 import BeautifulSoup
 
 def get_first_table(url):
 	page = urlopen(url)

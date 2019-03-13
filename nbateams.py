@@ -1,6 +1,6 @@
 from six.moves.urllib.request import urlopen
 import pandas as pd
-from bs4 import BeautifulSoup, SoupStrainer
+from bs4 import BeautifulSoup
 from scrapeTools import get_first_table
 
 def nba_team_names():
