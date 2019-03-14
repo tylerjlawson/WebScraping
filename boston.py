@@ -42,3 +42,4 @@ def get_boston_games():
 	document = df.to_dict(orient='list')
 	document = fix_rows(document)
 	return "Local teams' next 3 games:\n" + tabulate(document, headers='keys')
+	

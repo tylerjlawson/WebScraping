@@ -25,4 +25,5 @@ def east_vs_west():
 		WL[0] += total_wins - int(team_conf_rec[0])
 		WL[1] += total_losses - int(team_conf_rec[1])
 
-	return "East-West\n" + "-".join([str(i) for i in WL])
+	return "East vs. West\nRecord: " + "-".join([str(i) for i in WL]) + "\nWPCT: " + str(round(WL[0] / sum(WL), 3))
+	
