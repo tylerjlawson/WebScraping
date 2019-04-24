@@ -7,12 +7,15 @@ def space_at_index(word, i):
 	return word[:i] + " " + word[i:]
 
 def fix_networks(word):
-	known_networks = ["NESN", "NBCSB"]
-	for network in known_networks:
-		if network in word:
-			ind = word.find(network)
-			word = space_at_index(word, ind)
-			break
+	known_networks = ["NESN", "NBCSB", "ESPN", "NBCSN"]
+	for i in range(len(word)):
+		for network in known_networks:
+			if network in word[i] and len(word[i]) > len(network):
+				new = " " + network
+				word[i] = word[i].replace(network, new)
+				break
+			elif word[i] == "nan":
+				word[i] = "None"
 	return word
 
 def fix_middle(word):
@@ -30,8 +33,10 @@ def fix_rows(doc):
 	cols = ["Game One", "Game Two", "Game Three"]
 	for col in cols:
 		for i in range(len(doc[col])):
-			doc[col][i] = fix_networks(doc[col][i])
-			doc[col][i] = fix_middle(doc[col][i])
+			temp = str(doc[col][i]).split()
+			temp = fix_networks(temp)
+			doc[col][i] = " ".join(temp)
+			doc[col][i] = fix_middle(str(doc[col][i]))
 	return doc
 
 def get_boston_games():
@@ -42,4 +47,5 @@ def get_boston_games():
 	document = df.to_dict(orient='list')
 	document = fix_rows(document)
 	return "Local teams' next 3 games:\n" + tabulate(document, headers='keys')
-	
+
+print(get_boston_games())

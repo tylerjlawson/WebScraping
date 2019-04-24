@@ -12,16 +12,16 @@ def get_first_table(url):
 	try:
 		return soup.find_all("table")[0]
 	except IndexError:
-		try:
-			chrome_options = Options()
-			chrome_options.add_argument("--headless")
-			driver = webdriver.Chrome(options=chrome_options)
-			driver.get(url)
-			soup = BeautifulSoup(driver.page_source, 'lxml')
-			driver.close()
-			return soup.find_all("table")[0]
-		except:
-			found = False
+		# try:
+		chrome_options = Options()
+		chrome_options.add_argument("--headless")
+		driver = webdriver.Chrome(options=chrome_options)
+		driver.get(url)
+		soup = BeautifulSoup(driver.page_source, 'lxml')
+		driver.close()
+		return soup.find_all("table")[0]
+		# except:
+		# 	found = False
 			
-	if not found:
-		raise ValueError("No table found")
+	# if not found:
+	# 	raise ValueError("No table found")
